@@ -1,5 +1,6 @@
 import subprocess
 
+
 def checkout(cmd, text):
     res = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, encoding='utf-8')
     if text in res.stdout and res.returncode == 0:
