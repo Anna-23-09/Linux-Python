@@ -6,28 +6,20 @@
 распаковки (e) и проверки (t) поврежденного архива.
 """
 
-import subprocess
+from checkers import negative_checkout
+import yaml
 
-FOLDER_IN = "home/user/tst"
-FOLDER_OUT = "home/user/out"
-FOLDER_EXTRACT = "-o/home/zerg/folder1"
-
-
-def negative_checkout(cmd, text):
-    res = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
-    if res.returncode and (text in res.stdout or text in res.stderr):
-        return True
-    else:
-        return False
+with open('config.yaml') as f:
+    data = yaml.safe_load(f)
 
 
-def test_negative_step_1():
-    # test2
-    assert negative_checkout(f"cd {FOLDER_OUT}; 7z e .arx2_bad.7z {FOLDER_EXTRACT} -y", "ERROR"), "test2 Fail"
+class TestNegative:
+    def test_negative_step_1(self, make_files, make_folders, make_bad_file):
+        # test2
+        assert negative_checkout(f"cd {data['FOLDER_OUT']}; 7z e {make_bad_file}.7z {data['FOLDER_EXTRACT']} -y",
+                                 "ERROR"), "test2 Fail"
 
-
-def test_negative_step_2():
-    # test2
-    assert negative_checkout(f"cd {FOLDER_OUT}; 7z t .arx2_bad.7z {FOLDER_EXTRACT} -y", "ERROR"), "test2 Fail"
-
-
+    def test_negative_step_2(self, make_files, make_folders, make_bad_file):
+        # test2
+        assert negative_checkout(f"cd {data['FOLDER_OUT']}; 7z t {make_bad_file}.7z {data['FOLDER_EXTRACT']} -y",
+                                 "ERROR"), "test2 Fail"

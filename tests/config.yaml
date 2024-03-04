@@ -3,3 +3,4 @@ FOLDER_OUT: home/user/out
 FOLDER_EXTRACT: /home/user/folder1
 FOLDER_EXTRACT_2: /home/user/folder2
 count: 10
+size: 2M

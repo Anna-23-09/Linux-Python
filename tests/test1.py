@@ -1,18 +1,11 @@
 import subprocess
 import yaml
+from checkers import checkout, getout
 
 with open('config.yaml') as f:
     data = yaml.safe_load(f)
 
 class TestPositive:
-    def checkout(self, cmd, text):
-        res = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, encoding='utf-8')
-        if text in res.stdout and res.returncode == 0:
-            return True
-        else:
-            return False
-
-
     def test_step_1(self, make_folders, clear_folders, make_files):
         # test1
         res1 = self.checkout("cd {}; 7z a {}/arx2.".format(data["FOLDER_IN"], data["FOLDER_OUT"]), "Everything is OK")
@@ -67,9 +60,6 @@ class TestPositive:
         #test7
         assert self.checkout("cd {}; 7z d arx.7z".format(data["FOLDER_OUT"]), "Everything is OK")
 
-
-    def getout(param):
-        pass
 
 
     def test_step_8(self, clear_folders, make_files):
