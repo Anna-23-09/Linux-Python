@@ -1,5 +1,6 @@
 import subprocess
 import yaml
+#from checkers import checkout, getout
 from checkers import checkout, getout
 
 with open('config.yaml') as f:
