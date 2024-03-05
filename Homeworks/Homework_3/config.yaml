@@ -1,0 +1,9 @@
+FOLDER_IN: home/user/tst
+FOLDER_OUT: home/user/out
+FOLDER_EXTRACT: /home/user/folder1
+FOLDER_EXTRACT_3: /home/user/folder3
+count: 5
+size: 10K
+FOLDER_BAD: /home/user/folder2
+STAT_FILE_DIR: /home/user/folder_stat
+ARC_TYPE: zip
